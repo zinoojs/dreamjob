@@ -14,4 +14,16 @@ class JobController extends Controller
     {
         return view('jobs.jobslist');
     }
+    public function showcv()
+    {
+        return view('frontend.cvresume');
+    }
+    public function companylist()
+    {
+        return view('jobs.companylist');
+    }
+    public function jobdetails()
+    {
+        return view('jobs.jobdetails');
+    }
 }
