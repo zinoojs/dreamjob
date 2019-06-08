@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//home route
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,6 +18,8 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('welcome');
 });
+//jobs route
+
 Route::get('/users/job','JobController@index');
 Route::get('/users/job/list','JobController@list');
 Route::get('/users/job/details','JobController@jobdetails');
@@ -30,3 +33,12 @@ Route::get('/users/login','Auth\LoginController@show');
 Route::post('/users/login','Auth\LoginController@login');
 Route::get('/users/user','Admin\UserController@index');
 //Route::get('/','');
+
+Route::group(array('prefix'=>'admin','namespace'=>'Main','middleware'=>'auth'),function (){
+   Route::get('users/testing','MainController@index');
+});
+Route::group(array('prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'),function (){
+   Route::get('roles','RoleController@index');
+   Route::get('roles/create','RoleController@create');
+   Route::get('roles/create','RoleController@store');
+});
